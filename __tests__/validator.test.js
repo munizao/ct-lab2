@@ -8,12 +8,30 @@ describe ('validator class module', () => {
     required: true
   });
 
+  const foodsValidator = new Validator('foods', {
+    type: Array,
+    required: true
+  });
+
+  const weightValidator = new Validator('weight', {
+    type: Number,
+    required: true
+  });
+
+
   const goodDog = {
-    name: 'spot'
+    name: 'spot',
+    foods: ['corn', 'spinach'],
+    weight: 30
+  };
+  
+  const badDog = {
+    name: 'arlo',
+    foods: 30,
+    weight: [1, 2, 3, 4]
   };
 
-  const badDog = {
-    number: 55
+  const emptyDog = {
   };
 
   it('properly makes a validator', () => {
@@ -26,7 +44,11 @@ describe ('validator class module', () => {
   });
 
   it('properly validates', () => {
-    expect(nameValidator.validate(goodDog)).toBeTruthy();
-    expect(nameValidator.validate(badDog)).toBeFalsy();
+    expect(nameValidator.validate(goodDog)).toEqual('spot');
+    expect(foodsValidator.validate(badDog)).toThrowErrorMatchingSnapshot();
+    expect(nameValidator.validate(emptyDog)).toThrowErrorMatchingSnapshot();
+    expect(weightValidator.validate(goodDog)).toEqual(30);
+    expect(weightValidator.validate(badDog)).toThrowErrorMatchingSnapshot();
+    expect(weightValidator.validate(emptyDog)).toEqual(undefined);
   });
 });
