@@ -10,5 +10,6 @@ describe ('validator class module', () => {
   it('properly makes a validator', () => {
     expect(testValidator.type).toBeDefined();
     expect(testValidator.required).toBeDefined();
+    expect(testValidator.validate).toBeDefined();
   });
 });
