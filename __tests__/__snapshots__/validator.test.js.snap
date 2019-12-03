@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validator class module properly validates 1`] = `"received is not a function"`;
+
+exports[`validator class module properly validates 2`] = `"received is not a function"`;
