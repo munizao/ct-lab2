@@ -29,6 +29,18 @@ describe ('schema class module', () => {
     age: [1, 2, 3, 4]
   };
 
+  const castingDog = {
+    name: '',
+    age: '12',
+    weight: '20 lbs'
+  };
+
+  const castedDog = {
+    name: '',
+    age: 12,
+    weight: '20 lbs'
+  };
+
   const testSchema = new Schema(testSchemaDefinition);
 
   it('properly makes a schema', () => {
@@ -36,6 +48,7 @@ describe ('schema class module', () => {
   });
   it('correctly validates a schema', () => {
     expect(testSchema.validate(goodDog)).toEqual(goodDog);
+    expect(testSchema.validate(castingDog)).toEqual(castedDog);
     expect(() => testSchema.validate(badDog)).toThrowErrorMatchingSnapshot();
   });
 
