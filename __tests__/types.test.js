@@ -105,8 +105,8 @@ describe('validator module', () => {
     });
 
     it('throws error if value is not castable to array', () => {
-      expect(castToArray(3)).toThrowErrorMatchingSnapshot();
-      expect(castToArray(true)).toThrowErrorMatchingSnapshot();
+      expect(() => castToArray(3)).toThrowErrorMatchingSnapshot();
+      expect(() => castToArray(true)).toThrowErrorMatchingSnapshot();
     });
 
     it('can cast values to an object', () => {
@@ -115,8 +115,8 @@ describe('validator module', () => {
     });
 
     it('throws error if value is not castable to object', () => {
-      expect(castToArray(3)).toThrowErrorMatchingSnapshot();
-      expect(castToArray(true)).toThrowErrorMatchingSnapshot();
+      expect(() => castToObject(3)).toThrowErrorMatchingSnapshot();
+      expect(() => castToObject(true)).toThrowErrorMatchingSnapshot();
     });
 
     it('can cast values to a function', () => {
@@ -125,8 +125,8 @@ describe('validator module', () => {
     });
 
     it('throws error if value is not castable to function', () => {
-      expect(castToArray(3)).toThrowErrorMatchingSnapshot();
-      expect(castToArray(true)).toThrowErrorMatchingSnapshot();
+      expect(() => castToFunction(3)).toThrowErrorMatchingSnapshot();
+      expect(() => castToFunction(true)).toThrowErrorMatchingSnapshot();
     });
   });
 
