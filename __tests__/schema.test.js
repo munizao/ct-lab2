@@ -27,7 +27,7 @@ describe ('schema class module', () => {
   const badDog = {
     name: 'bilbo',
     age: [1, 2, 3, 4]
-  }
+  };
 
   const testSchema = new Schema(testSchemaDefinition);
 
