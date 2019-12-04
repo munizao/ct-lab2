@@ -15,7 +15,7 @@ describe ('validator class module', () => {
 
   const weightValidator = new Validator('weight', {
     type: Number,
-    required: true
+    required: false
   });
 
 
@@ -45,10 +45,10 @@ describe ('validator class module', () => {
 
   it('properly validates', () => {
     expect(nameValidator.validate(goodDog)).toEqual('spot');
-    expect(foodsValidator.validate(badDog)).toThrowErrorMatchingSnapshot();
-    expect(nameValidator.validate(emptyDog)).toThrowErrorMatchingSnapshot();
+    expect(() => foodsValidator.validate(badDog)).toThrowErrorMatchingSnapshot();
+    expect(() => nameValidator.validate(emptyDog)).toThrowErrorMatchingSnapshot();
     expect(weightValidator.validate(goodDog)).toEqual(30);
-    expect(weightValidator.validate(badDog)).toThrowErrorMatchingSnapshot();
+    expect(() => weightValidator.validate(badDog)).toThrowErrorMatchingSnapshot();
     expect(weightValidator.validate(emptyDog)).toEqual(undefined);
   });
 });
