@@ -3,7 +3,7 @@ const {
 } = require('../lib/schema.js');
 
 describe ('schema class module', () => {
-  testSchemaDefinition =
+  const testSchemaDefinition =
   {
     name: {
       type: String,
@@ -16,12 +16,27 @@ describe ('schema class module', () => {
     weight: {
       type: String
     }
-  });
+  };
 
-  testSchema = new Schema(testSchemaDefinition);
+  const goodDog = {
+    name: 'frodo',
+    age: 12,
+    weight: '10 lbs'
+  };
+
+  const badDog = {
+    name: 'bilbo',
+    age: [1, 2, 3, 4]
+  }
+
+  const testSchema = new Schema(testSchemaDefinition);
 
   it('properly makes a schema', () => {
-    expect(testSchema.validators).toBeDefined()
+    expect(testSchema.validators).toBeDefined();
+  });
+  it('correctly validates a schema', () => {
+    expect(testSchema.validate(goodDog)).toEqual(goodDog);
+    expect(() => testSchema.validate(badDog)).toThrowErrorMatchingSnapshot();
   });
 
-)};
+});
